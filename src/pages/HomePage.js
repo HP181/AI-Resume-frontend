@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Upload, FileText, Sparkles, TrendingUp, Award, Zap } from 'lucide-react';
+import { Upload, FileText, Sparkles, TrendingUp, Award } from 'lucide-react';
 import { toast } from 'sonner';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -30,7 +30,6 @@ const HomePage = () => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       handleFile(e.dataTransfer.files[0]);
     }
@@ -71,11 +70,11 @@ const HomePage = () => {
 
       if (response.data.success) {
         toast.success('Resume uploaded successfully!');
-        navigate('/analysis', { 
-          state: { 
+        navigate('/analysis', {
+          state: {
             extractedText: response.data.extracted_text,
-            filename: response.data.filename 
-          } 
+            filename: response.data.filename
+          }
         });
       }
     } catch (error) {
@@ -87,50 +86,44 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col justify-start items-center bg-slate-900">
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
+      <div className="relative w-full overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute w-96 h-96 -top-48 -left-48 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute w-96 h-96 -bottom-48 -right-48 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute w-72 h-72 sm:w-96 sm:h-96 -top-36 -left-36 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute w-72 h-72 sm:w-96 sm:h-96 -bottom-36 -right-36 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+        <div className="relative w-full max-w-4xl sm:max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 mx-auto flex flex-col items-center">
           {/* Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 rounded-full px-6 py-2 mb-6 backdrop-blur-sm">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 rounded-full px-5 py-2 mb-4 backdrop-blur-sm">
               <Sparkles className="w-4 h-4 text-blue-400" />
               <span className="text-sm font-medium text-blue-300">AI-Powered Resume Analysis</span>
             </div>
-            
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent leading-tight">
+
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent leading-tight text-center">
               AI Power Resume
             </h1>
-            
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-              Transform your resume with cutting-edge AI analysis. Get instant feedback, 
+
+            <p className="text-lg sm:text-xl text-gray-300 max-w-md sm:max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed text-center">
+              Transform your resume with cutting-edge AI analysis. Get instant feedback,
               identify weak areas, and create a job-winning resume that stands out.
             </p>
           </div>
 
           {/* Upload Section */}
-          <Card 
-            className="max-w-2xl mx-auto bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-slate-700/50 backdrop-blur-xl shadow-2xl"
-            data-testid="upload-card"
-          >
-            <CardContent className="p-8">
+          <Card className="w-full max-w-md sm:max-w-2xl mx-auto bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+            <CardContent className="p-6 sm:p-8">
               <div
-                className={`border-2 border-dashed rounded-xl p-12 transition-all duration-300 ${
-                  dragActive 
-                    ? 'border-blue-500 bg-blue-500/10' 
-                    : 'border-slate-600 hover:border-slate-500'
+                className={`border-2 border-dashed rounded-xl p-6 sm:p-12 transition-all duration-300 text-center ${
+                  dragActive ? 'border-blue-500 bg-blue-500/10' : 'border-slate-600 hover:border-slate-500'
                 }`}
                 onDragEnter={handleDrag}
                 onDragLeave={handleDrag}
                 onDragOver={handleDrag}
                 onDrop={handleDrop}
-                data-testid="upload-dropzone"
               >
                 <input
                   ref={fileInputRef}
@@ -138,67 +131,64 @@ const HomePage = () => {
                   accept=".pdf,.docx"
                   onChange={handleFileInput}
                   className="hidden"
-                  data-testid="file-input"
                 />
 
-                <div className="text-center">
-                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-blue-500/30">
-                    <Upload className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    {file ? file.name : 'Upload Your Resume'}
-                  </h3>
-                  
-                  <p className="text-gray-400 mb-6">
-                    Drag and drop your resume here, or click to browse
-                  </p>
-                  
-                  <div className="flex gap-3 justify-center">
-                    <Button
-                      onClick={() => fileInputRef.current?.click()}
-                      variant="outline"
-                      className="border-slate-600 hover:border-blue-500 hover:bg-blue-500/10 hover:text-white text-white"
-                      data-testid="browse-button"
-                    >
-                      <FileText className="w-4 h-4 mr-2" />
-                      Browse Files
-                    </Button>
-                    
-                    <Button
-                      onClick={handleUpload}
-                      disabled={!file || uploading}
-                      className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg shadow-blue-500/30"
-                      data-testid="analyze-button"
-                    >
-                      {uploading ? (
-                        <>
-                          <span className="animate-spin mr-2">⏳</span>
-                          Processing...
-                        </>
-                      ) : (
-                        <>
-                          <Sparkles className="w-4 h-4 mr-2" />
-                          Analyze Resume
-                        </>
-                      )}
-                    </Button>
-                  </div>
-                  
-                  <p className="text-sm text-gray-500 mt-4">
-                    Supported formats: PDF, DOCX
-                  </p>
+                <div className="mx-auto w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg shadow-blue-500/30">
+                  <Upload className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">
+                  {file ? file.name : 'Upload Your Resume'}
+                </h3>
+
+                <p className="text-gray-400 mb-4 sm:mb-6 text-sm sm:text-base">
+                  Drag and drop your resume here, or click to browse
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Button
+                    onClick={() => fileInputRef.current?.click()}
+                    variant="outline"
+                    className="border-slate-600 hover:border-blue-500 hover:bg-blue-500/10 hover:text-white text-white"
+                  >
+                    <FileText className="w-4 h-4 mr-2" />
+                    Browse Files
+                  </Button>
+
+                  <Button
+                    onClick={handleUpload}
+                    disabled={!file || uploading}
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg shadow-blue-500/30"
+                  >
+                    {uploading ? (
+                      <>
+                        <span className="animate-spin mr-2">⏳</span>
+                        Processing...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-4 h-4 mr-2" />
+                        Analyze Resume
+                      </>
+                    )}
+                  </Button>
+                </div>
+
+                <p className="text-sm text-gray-500 mt-4 text-center">
+                  Supported formats: PDF, DOCX
+                </p>
               </div>
             </CardContent>
           </Card>
 
           {/* Features Grid */}
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-16">
-            <Card className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 border-slate-700/50 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300" data-testid="feature-ai-analysis">
-              <CardContent className="p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl w-full mt-12 sm:mt-16">
+            <Card className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 border-slate-700/50 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300">
+              <CardContent className="p-6 flex flex-col items-center text-center">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-blue-500/30">
+                <div className='flex w-full justify-center items-center'>
                   <Sparkles className="w-6 h-6 text-white" />
+                </div>
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">AI Analysis</h3>
                 <p className="text-gray-400 text-sm">
@@ -207,8 +197,8 @@ const HomePage = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 border-slate-700/50 backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300" data-testid="feature-smart-suggestions">
-              <CardContent className="p-6">
+            <Card className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 border-slate-700/50 backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300">
+              <CardContent className="p-6 flex flex-col items-center text-center">
                 <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-purple-500/30">
                   <TrendingUp className="w-6 h-6 text-white" />
                 </div>
@@ -219,8 +209,8 @@ const HomePage = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 border-slate-700/50 backdrop-blur-sm hover:border-green-500/50 transition-all duration-300" data-testid="feature-export">
-              <CardContent className="p-6">
+            <Card className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 border-slate-700/50 backdrop-blur-sm hover:border-green-500/50 transition-all duration-300">
+              <CardContent className="p-6 flex flex-col items-center text-center">
                 <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-green-500/30">
                   <Award className="w-6 h-6 text-white" />
                 </div>
