@@ -105,7 +105,7 @@ const AnalysisPage = () => {
           <Button
             variant="ghost"
             onClick={() => navigate('/')}
-            className="text-gray-300 hover:text-white mb-4"
+            className="text-white mb-4 hover:border-blue-500 hover:bg-blue-500/10 hover:text-white"
             data-testid="back-button"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
