@@ -112,10 +112,10 @@ const AnalysisPage = () => {
             Back to Upload
           </Button>
           
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
+          <h1 className="text-4xl text-center font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
             Resume Analysis & Editor
           </h1>
-          <p className="text-gray-400">Review your resume, get AI insights, and make improvements</p>
+          <p className="text-gray-400 text-center">Review your resume, get AI insights, and make improvements</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-6">
@@ -123,9 +123,9 @@ const AnalysisPage = () => {
           <div className="space-y-6">
             <Card className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-slate-700/50 backdrop-blur-xl" data-testid="original-resume-card">
               <CardHeader>
-                <CardTitle className="text-white flex items-center gap-2">
+                <CardTitle className="text-white flex items-center justify-center gap-2">
                   <FileText className="w-5 h-5" />
-                  Original Resume
+                  <p>Original Resume</p>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">

@@ -121,7 +121,7 @@ const HomePage = () => {
                   dragActive ? 'border-blue-500 bg-blue-500/10' : 'border-slate-600 hover:border-slate-500'
                 }`}
                 onDragEnter={handleDrag}
-                onDragLeave={handleDrag}
+                onDragLeave={handleDrag}Panal
                 onDragOver={handleDrag}
                 onDrop={handleDrop}
               >
