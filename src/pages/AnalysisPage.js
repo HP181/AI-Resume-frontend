@@ -250,7 +250,7 @@ const AnalysisPage = () => {
                       data-testid="improved-resume-textarea"
                     />
 
-                    <div className="space-y-3">
+                    <div className="space-y-3 text-white">
                       <div className="grid grid-cols-2 gap-3">
                         <div>
                           <Label className="text-gray-300 text-sm">Template Style</Label>
@@ -258,7 +258,7 @@ const AnalysisPage = () => {
                             <SelectTrigger className="bg-slate-900/50 border-slate-700 text-white mt-1" data-testid="template-select">
                               <SelectValue />
                             </SelectTrigger>
-                            <SelectContent className="bg-slate-800 border-slate-700">
+                            <SelectContent className="bg-slate-800 border-slate-700 text-white">
                               <SelectItem value="professional">Professional</SelectItem>
                               <SelectItem value="modern">Modern</SelectItem>
                               <SelectItem value="classic">Classic</SelectItem>
@@ -273,7 +273,7 @@ const AnalysisPage = () => {
                             <SelectTrigger className="bg-slate-900/50 border-slate-700 text-white mt-1" data-testid="format-select">
                               <SelectValue />
                             </SelectTrigger>
-                            <SelectContent className="bg-slate-800 border-slate-700">
+                            <SelectContent className="bg-slate-800 border-slate-700 text-white">
                               <SelectItem value="pdf">PDF</SelectItem>
                               <SelectItem value="docx">DOCX</SelectItem>
                             </SelectContent>
